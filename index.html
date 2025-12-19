@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to Chandana Learning</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 20% 20%, #ffe4f0 0%, transparent 40%),
+    radial-gradient(circle at 80% 30%, #e0f7ff 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, #fff3d6 0%, transparent 40%),
+    linear-gradient(135deg, #f7f7fb, #fdf1f8);
+  animation:bgMove 18s ease-in-out infinite;
+  overflow-x:hidden;
+}
+@keyframes bgMove{
+  0%{background-position:0% 0%,100% 0%,50% 100%,0% 0%;}
+  50%{background-position:100% 50%,0% 50%,50% 0%,100% 100%;}
+  100%{background-position:0% 0%,100% 0%,50% 100%,0% 0%;}
+}
+header{
+  padding:16px;
+  background:#ff69b4;
+  color:white;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+}
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  padding:12px;
+}
+nav button{
+  background:#222;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+}
+section{display:none;padding:20px;}
+.active{display:block;}
+
+.card{
+  background:rgba(255,255,255,0.9);
+  border-radius:16px;
+  padding:16px;
+  margin:16px 0;
+  box-shadow:0 6px 16px rgba(0,0,0,0.12);
+}
+.card h3{color:#ff1493}
+
+.day-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+.day{
+  background:#ffe4f0;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
+}
+.day:hover{background:#ffb6c1}
+
+.topic{
+  background:#fff0f6;
+  padding:14px;
+  border-radius:14px;
+  margin:12px 0;
+}
+
+.badge{
+  width:120px;height:120px;border-radius:50%;
+  background:linear-gradient(135deg,#ff69b4,#ff1493);
+  color:white;display:flex;align-items:center;justify-content:center;
+  font-weight:bold;margin:10px;
+}
+
+.back{
+  background:#333;color:white;border:none;
+  padding:10px 14px;border-radius:8px;
+}
+
+/* floating bubbles */
+.bubble{
+  position:fixed;bottom:-40px;font-size:22px;
+  animation:float 8s linear forwards;
+}
+@keyframes float{
+  to{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<header>Welcome to Chandana Learning 🌸</header>
+
+<nav>
+<button onclick="show('dashboard')">Dashboard</button>
+<button onclick="show('timetable')">Timetable</button>
+<button onclick="show('practice')">Practice</button>
+<button onclick="show('analytics')">Analytics</button>
+<button onclick="show('achievements')">Achievements</button>
+<button onclick="show('profile')">Profile</button>
+</nav>
+
+<section id="dashboard" class="active">
+<div class="card">
+<h3>Learning Dashboard</h3>
+<p>Select a section to start your SQL journey 💖</p>
+</div>
+</section>
+
+<section id="timetable">
+<div class="card">
+<h3>7-Day SQL Timetable</h3>
+<div class="day-grid" id="days"></div>
+</div>
+<div id="topicView"></div>
+<button class="back" onclick="show('dashboard')">⬅ Back</button>
+</section>
+
+<section id="practice">
+<div class="card">
+<h3>Practice</h3>
+<p>Day-wise SQL questions</p>
+</div>
+<button class="back" onclick="show('dashboard')">⬅ Back</button>
+</section>
+
+<section id="analytics">
+<div class="card">
+<h3>Analytics</h3>
+<p id="ana"></p>
+</div>
+<button class="back" onclick="show('dashboard')">⬅ Back</button>
+</section>
+
+<section id="achievements">
+<div class="card">
+<h3>Achievements</h3>
+<div style="display:flex;flex-wrap:wrap" id="badges"></div>
+</div>
+<button class="back" onclick="show('dashboard')">⬅ Back</button>
+</section>
+
+<section id="profile">
+<div class="card">
+<img src="profile.jpg" width="100" style="border-radius:50%">
+<h3>Chelika Chandana</h3>
+<p>B.Tech – Data Science</p>
+<p id="progress"></p>
+
+<h3>📄 Resume</h3>
+<iframe src="resume final.pdf" width="100%" height="400"></iframe>
+<br><br>
+<a href="resume final.pdf" download>
+<button class="back">⬇ Download Resume</button>
+</a>
+</div>
+<button class="back" onclick="show('dashboard')">⬅ Back</button>
+</section>
+
+<script>
+function show(id){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+const syllabus={
+1:[
+["What is SQL","https://www.youtube.com/embed/7S_tz1z_5bA","https://www.w3schools.com/sql/sql_intro.asp","https://www.geeksforgeeks.org/sql-tutorial/"],
+["SELECT Statement","https://www.youtube.com/embed/7S_tz1z_5bA","https://www.w3schools.com/sql/sql_select.asp","https://www.geeksforgeeks.org/sql-select-query/"]
+],
+2:[
+["WHERE Clause","https://www.youtube.com/embed/1J3Xz5GJ7g4","https://www.w3schools.com/sql/sql_where.asp","https://www.geeksforgeeks.org/sql-where-clause/"],
+["AND / OR","https://www.youtube.com/embed/1J3Xz5GJ7g4","https://www.w3schools.com/sql/sql_and_or.asp","https://www.geeksforgeeks.org/sql-and-or-operators/"]
+],
+3:[
+["ORDER BY","https://www.youtube.com/embed/uUO-ynRJKo0?si=NuQC2ZVlkvtj2nxR","https://www.w3schools.com/sql/sql_orderby.asp","https://www.geeksforgeeks.org/sql-order-by/"]
+],
+4:[
+["GROUP BY","https://www.youtube.com/embed/VQf0V6Wwbf4?si=fGV3yhKWjQfwbY0B","https://www.w3schools.com/sql/sql_groupby.asp","https://www.geeksforgeeks.org/sql-group-by/"]
+],
+5:[
+["JOINS","https://www.youtube.com/embed/9yeOJ0ZMUYw","https://www.w3schools.com/sql/sql_join.asp","https://www.geeksforgeeks.org/sql-join/"]
+],
+6:[
+["Subqueries","https://www.youtube.com/embed/7S_tz1z_5bA","https://www.w3schools.com/sql/sql_subqueries.asp","https://www.geeksforgeeks.org/sql-subquery/"]
+],
+7:[
+["Revision","https://www.youtube.com/embed/7S_tz1z_5bA","https://www.w3schools.com/sql/","https://www.geeksforgeeks.org/sql-interview-questions/"]
+]
+};
+
+const days=document.getElementById("days");
+for(let i=1;i<=7;i++){
+days.innerHTML+=`<div class="day" onclick="openDay(${i})">Day ${i}</div>`;
+}
+
+function openDay(d){
+let html=`<div class="card"><h3>Day ${d} Topics</h3>`;
+syllabus[d].forEach(t=>{
+html+=`
+<div class="topic">
+<h4>${t[0]}</h4>
+<iframe width="100%" height="220" src="${t[1]}" allowfullscreen></iframe>
+<p>
+<a href="${t[2]}" target="_blank">W3Schools</a> |
+<a href="${t[3]}" target="_blank">GeeksforGeeks</a>
+</p>
+</div>`;
+});
+html+=`</div>`;
+topicView.innerHTML=html;
+}
+
+/* bubbles */
+setInterval(()=>{
+let b=document.createElement("div");
+b.className="bubble";
+b.style.left=Math.random()*100+"%";
+b.innerText=["🫧","💖","🌸","⭐","🐦"][Math.floor(Math.random()*5)];
+document.body.appendChild(b);
+setTimeout(()=>b.remove(),8000);
+},900);
+</script>
+
+</body>
+</html>
